@@ -65,7 +65,7 @@ There are two file models.
 
 - **`veilid-server.conf`** (YAML, `startos/fileModels/veilidServerConf.ts`):
   - **Seeded:** on every init with an empty merge.
-  - **Fixed values, self-healed on every init:** the store directories, insecure protected storage, the client API (IPC on, TCP on `0.0.0.0:5959`), `auto_attach`, terminal logging, UPnP off, address-change detection off (`detect_address_changes: false`), and the UDP/TCP/WS listen addresses (`:5150`).
+  - **Fixed values, self-healed on every init:** the store directories, insecure protected storage, the client API (IPC on, TCP on `0.0.0.0:5959`), `auto_attach`, terminal logging, UPnP off, address-change detection off (`detect_address_changes: false`), direct bootstrap serving off (`serve_direct_bootstrap: false`, as upstream's packaged config sets it), and the UDP/TCP/WS listen addresses (`:5150`).
   - **Identity, written by the package:** `core.network.routing_table.public_keys` and `secret_keys`. Before the daemon starts, `main` generates them with `veilid-server --generate-key-pairs` if they are missing, and again after Reset Node Identity. veilid-server takes these over any identity in `table_store/`.
   - **Published address, written by `main` from the Interfaces page:** `core.network.protocol.udp.public_address`, `tcp.public_address`, `ws.url` and `core.network.privacy.require_inbound_relay`. See [Network Access and Interfaces](#network-access-and-interfaces).
   - **User values, written by Configure Node:** `core.network.dht.remote_max_storage_space_mb` and `logging.terminal.level`.

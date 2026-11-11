@@ -29,6 +29,7 @@ const privacy = z.looseObject({
 const routingTable = z.looseObject({
   public_keys: z.array(z.string()).optional().catch(undefined),
   secret_keys: z.array(z.string()).optional().catch(undefined),
+  serve_direct_bootstrap: z.literal(false).catch(false),
 })
 
 const network = z.looseObject({

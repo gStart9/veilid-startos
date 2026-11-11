@@ -1,4 +1,4 @@
-ARG VEILID_VERSION=0.5.7
+ARG VEILID_VERSION=0.5.8
 
 FROM --platform=$BUILDPLATFORM debian:trixie-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad AS fetch-deb
 ARG VEILID_VERSION
@@ -17,7 +17,7 @@ FROM fetch-deb AS bin-arm64
 
 FROM --platform=$BUILDPLATFORM rust:1.99.1-slim-trixie AS bin-riscv64
 ARG VEILID_VERSION
-ARG VEILID_COMMIT=f5cdcca38cecf4845eb9bd5e21ddca382a357a75
+ARG VEILID_COMMIT=759da70be95497cfaa2e0bb8c122b16c8cac449e
 RUN apt-get update \
   && apt-get install -y --no-install-recommends ca-certificates git gcc-riscv64-linux-gnu libc6-dev-riscv64-cross \
   && rm -rf /var/lib/apt/lists/*
