@@ -1,6 +1,6 @@
 ARG VEILID_VERSION=0.5.8
 
-FROM --platform=$BUILDPLATFORM debian:trixie-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad AS fetch-deb
+FROM --platform=$BUILDPLATFORM debian:trixie-slim@sha256:8aa5a7bf5a1955bddbe7d74fcdd0b91ab30e74362a8b73af672b0481b35b44a0 AS fetch-deb
 ARG VEILID_VERSION
 ARG TARGETARCH
 ADD https://packages.veilid.net/apt/pool/stable/main/veilid-server-${VEILID_VERSION}_${TARGETARCH}.deb /tmp/
@@ -33,7 +33,7 @@ RUN cargo build --locked --release --target riscv64gc-unknown-linux-gnu -p veili
 
 FROM bin-${TARGETARCH} AS bin
 
-FROM debian:trixie-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad
+FROM debian:trixie-slim@sha256:8aa5a7bf5a1955bddbe7d74fcdd0b91ab30e74362a8b73af672b0481b35b44a0
 COPY --from=bin /out/usr/bin/ /usr/bin/
 RUN groupadd --system veilid \
   && useradd --system --gid veilid --home-dir /var/db/veilid-server --no-create-home --shell /usr/sbin/nologin veilid
